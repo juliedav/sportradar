@@ -22,6 +22,7 @@ public class ScoreBoard {
     public void stopGame(Game game){
         finished_games.add(game);
         active_games.remove(game);
+        game.setInPlay();
         display();
     }
 

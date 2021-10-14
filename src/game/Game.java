@@ -9,6 +9,7 @@ public class Game {
     private String away;
     private int home_score = 0;
     private int away_score = 0;
+    private boolean inPlay = true;
 
 
 // -------------------------------------------------------
@@ -49,14 +50,19 @@ public class Game {
     }
 
     public void setScore(String team){
-        if(team.equals(home)){
-            home_score++;
-            notifyBoard();
+        if(inPlay) {
+            if (team.equals(home)) {
+                home_score++;
+                notifyBoard();
+            } else {
+                away_score++;
+                notifyBoard();
+            }
         }
-        else {
-            away_score++;
-            notifyBoard();
-        }
+    }
+
+    public void setInPlay(){
+        inPlay = false;
     }
 
     public void notifyBoard(){

@@ -26,9 +26,12 @@ public class Controller {
         game.setScore("Canada");game.setScore("Canada");
         game1.setScore("Brazil");game1.setScore("Brazil");
 
+        board.stopGame(game2);
+        board.stopGame(game4);
         board.stopGame(game);
         board.stopGame(game1);
-        // can add goals after a game is finished. not good.
+        board.stopGame(game3);
+        // cant add goals after a game is finished.
         game1.setScore("Brazil");
 
         board.displaySummary();
