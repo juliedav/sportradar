@@ -1,11 +1,26 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game {
     private String home;
     private String away;
     private int home_score = 0;
     private int away_score = 0;
 
+
+// -------------------------------------------------------
+    // observer observable
+    private List<ScoreBoard> scoreBoards = new ArrayList<>();
+    public void addObserver(ScoreBoard scoreBoard) {
+        this.scoreBoards.add(scoreBoard);
+    }
+
+    public void removeObserver(ScoreBoard scoreBoard) {
+        this.scoreBoards.remove(scoreBoard);
+    }
+// -------------------------------------------------------
     // String or Team as input
     public Game(String home_team, String away_team){
         home = home_team;
@@ -38,21 +53,18 @@ public class Game {
     public void setScore(Team team){
         if(team.equals(home)){
             home_score++;
+            notifyBoard();
         }
         else {
             away_score++;
+            notifyBoard();
         }
     }
 
-/*    public static void main(String[] args) {
-        Game board = new Game("Mexico", "Canada");
-        board.getAway_score();
-        board.getHome_score();
-        board.getAway_team();
-        board.getHome_team();
-
-    }*/
-
-
+    public void notifyBoard(){
+        for(ScoreBoard board : scoreBoards){
+            board.update();
+        }
+    }
 
 }
