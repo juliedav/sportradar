@@ -1,6 +1,7 @@
 package game;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class Game {
@@ -12,9 +13,10 @@ public class Game {
 
 // -------------------------------------------------------
     // observer observable
-    private List<ScoreBoard> scoreBoards = new ArrayList<>();
+    private Collection<ScoreBoard> scoreBoards = new ArrayList<>();
+
     public void addObserver(ScoreBoard scoreBoard) {
-        this.scoreBoards.add(scoreBoard);
+        scoreBoards.add(scoreBoard);
     }
 
     public void removeObserver(ScoreBoard scoreBoard) {
@@ -32,25 +34,21 @@ public class Game {
     }
 
     public String getHome_team(){
-        //System.out.println(home);
         return home;
     }
     public String getAway_team(){
-        //System.out.println(away);
         return away;
     }
 
     public int getHome_score(){
-        //System.out.println(home_score);
         return home_score;
     }
 
     public int getAway_score(){
-        //System.out.println(away_score);
         return away_score;
     }
 
-    public void setScore(Team team){
+    public void setScore(String team){
         if(team.equals(home)){
             home_score++;
             notifyBoard();
